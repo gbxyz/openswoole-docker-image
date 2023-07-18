@@ -14,7 +14,7 @@ RUN apt-get install -qqq \
     php8.2 php8.2-opcache php-cli php-bcmath php-bz2 php-curl \
     php-dev php-intl php-mbstring php-memcache php-mysql \
     php-xml php-yaml php-pear php-gmp php-sqlite3 \
-    composer ca-certificates libcurl4-openssl-dev
+    php-pcov composer ca-certificates libcurl4-openssl-dev
 
 RUN (yes yes | head -5 ; echo no) | pecl install openswoole
 

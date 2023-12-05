@@ -2,8 +2,6 @@ name: Automated Docker image build and push
 
 on:
   push:
-    paths:
-      - 'Dockerfile'
     branches: [ "main" ]
   workflow_dispatch:
   schedule:

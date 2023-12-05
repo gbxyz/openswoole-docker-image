@@ -15,9 +15,13 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: ubuntu-latest-php-82-openswoole
-      PHP_VERSION: 8.2
+    strategy:
+      matrix:
+        include:
+          - PHP_VERSION: 8.2
+            IMAGE_NAME: ubuntu-latest-php-82-openswoole
+          - PHP_VERSION: 8.3
+            IMAGE_NAME: ubuntu-latest-php-83-openswoole
     steps:
       - uses: actions/checkout@v3
 
@@ -31,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@ef25336f420be2d1a49205baf41a9b88712a65a1
         with:
-          images: ${{env.OWNER}}/${{env.IMAGE_NAME}}
+          images: ${{env.OWNER}}/${{matrix.IMAGE_NAME}}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
@@ -41,4 +45,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: ${{env.PHP_VERSION}}
+          build-args: ${{matrix.PHP_VERSION}}

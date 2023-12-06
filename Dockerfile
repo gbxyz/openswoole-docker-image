@@ -23,8 +23,7 @@ set -euo pipefail
 PKGS=""
 
 for MOD in bcmath bz2 cli curl dev gmp intl mbstring memcache mysql sqlite3 xml yaml ; do
-    PKG="$(printf "php%.1f-%s" "${PHP_VERSION}" "\${MOD}")"
-    PKGS="\${PKGS} \${PKG}"
+    PKGS="$(printf "%s php%.1f-%s" "\${PKGS}" "${PHP_VERSION}" "\${MOD}")"
 done
 
 apt-get install -qqq \${PKGS}

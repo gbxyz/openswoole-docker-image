@@ -14,11 +14,25 @@ RUN apt-get install -qqq ca-certificates && /usr/sbin/update-ca-certificates
 
 ARG PHP_VERSION=8.2
 
-RUN apt-get install -qqq \
-    php${PHP_VERSION} php${PHP_VERSION}-opcache php-cli php-bcmath php-bz2 php-curl \
-    php-dev php-intl php-mbstring php-memcache php-mysql \
-    php-xml php-yaml php-pear php-gmp php-sqlite3 \
-    composer libcurl4-openssl-dev
+RUN apt-get install -qqq php${PHP_VERSION}
+
+RUN <<END bash
+
+set -euo pipefail
+
+PKGS=""
+
+for MOD in bcmath bz2 cli curl dev gmp intl mbstring memcache mysql sqlite3 xml yaml ; do
+    PKG="$(printf "php%.1f-%s" "${PHP_VERSION}" "\${MOD}")"
+    PKGS="\${PKGS} \${PKG}"
+done
+
+apt-get install -qqq \${PKGS}
+END
+
+RUN apt-get install -qqq php-pear composer libcurl4-openssl-dev
+
+RUN pecl channel-update pecl.php.net
 
 RUN (yes yes | head -5 ; echo no) | pecl install openswoole
 

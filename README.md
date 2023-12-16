@@ -1,4 +1,4 @@
-Ubuntu 22 + PHP {8.2,8.3} + Openswoole. This isn't very useful on its own, it's a base image for other things.
+Ubuntu 22 + PHP 8.x + [Openswoole](https://openswoole.com/). This isn't very useful on its own, it's a base image for other things.
 
 GitHub repository: https://github.com/gbxyz/openswoole/
 

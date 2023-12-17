@@ -9,7 +9,6 @@ on:
 
 env:
   owner: gbxyz
-  name: openswoole
 
 jobs:
   build:
@@ -19,9 +18,9 @@ jobs:
       matrix:
         include:
           - version: 8.2
-            tag: ${{env.owner}}/${{env.name}}:php82
+            tag: gbxyz/openswoole:php82
           - version: 8.3
-            tag: ${{env.owner}}/${{env.name}}:php83
+            tag: gbxyz/openswoole:php83
 
     steps:
       - uses: actions/checkout@v3
@@ -29,7 +28,7 @@ jobs:
       - name: Log in
         uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
         with:
-          username: ${{env.owner}}
+          username: gbxyz
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build and push

@@ -23,16 +23,16 @@ jobs:
             tag: gbxyz/openswoole:php83
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Log in
-        uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+        uses: docker/login-action@v3
         with:
           username: gbxyz
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build and push
-        uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile

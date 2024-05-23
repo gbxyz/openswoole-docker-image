@@ -8,8 +8,6 @@ RUN apt-get install -qqq software-properties-common
 
 RUN add-apt-repository ppa:ondrej/php
 
-RUN apt-get upgrade -qqq
-
 RUN apt-get install -qqq ca-certificates && /usr/sbin/update-ca-certificates
 
 ARG PHP_VERSION=8.2

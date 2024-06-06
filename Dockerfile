@@ -1,4 +1,6 @@
-FROM ubuntu:jammy
+ARG UBUNTU_VERSION=jammy
+
+FROM ubuntu:$UBUNTU_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 

@@ -19,8 +19,16 @@ jobs:
         include:
           - version: 8.2
             tag: gbxyz/openswoole:php82
+            ubuntu_version: jammy
           - version: 8.3
             tag: gbxyz/openswoole:php83
+            ubuntu_version: jammy
+          - version: 8.2
+            tag: gbxyz/openswoole:php82-noble
+            ubuntu_version: noble
+          - version: 8.3
+            tag: gbxyz/openswoole:php83-noble
+            ubuntu_version: noble
 
     steps:
       - uses: actions/checkout@v4
@@ -38,4 +46,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{matrix.tag}}
-          build-args: PHP_VERSION=${{matrix.version}}
+          build-args: |
+            PHP_VERSION=${{matrix.version}}
+            UBUNTU_VERSION=${{matrix.ubuntu_version}}

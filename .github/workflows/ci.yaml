@@ -17,15 +17,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - version: 8.2
-            tag: gbxyz/openswoole:php82
-            ubuntu_version: jammy
           - version: 8.3
             tag: gbxyz/openswoole:php83
             ubuntu_version: jammy
-          - version: 8.2
-            tag: gbxyz/openswoole:php82-noble
-            ubuntu_version: noble
           - version: 8.3
             tag: gbxyz/openswoole:php83-noble
             ubuntu_version: noble

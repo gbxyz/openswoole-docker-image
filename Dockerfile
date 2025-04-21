@@ -8,7 +8,7 @@ RUN apt-get update -qqq
 
 RUN apt-get install -qqq software-properties-common
 
-RUN add-apt-repository ppa:ondrej/php
+RUN add-apt-repository --yes ppa:ondrej/php
 
 RUN apt-get install -qqq ca-certificates && /usr/sbin/update-ca-certificates
 

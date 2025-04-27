@@ -4,17 +4,17 @@ FROM ubuntu:$UBUNTU_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update -qqq
+RUN apt -qqq --allow-releaseinfo-change update
 
-RUN apt install -qqq software-properties-common
+RUN apt -qqq install software-properties-common
 
 RUN add-apt-repository --yes ppa:ondrej/php
 
-RUN apt install -qqq ca-certificates && /usr/sbin/update-ca-certificates
+RUN apt -qqq install ca-certificates && /usr/sbin/update-ca-certificates
 
 ARG PHP_VERSION=8.2
 
-RUN apt install -qqq php${PHP_VERSION}
+RUN apt -qqq install php${PHP_VERSION}
 
 RUN <<END bash
 
@@ -26,10 +26,10 @@ for MOD in bcmath bz2 cli curl dev gmp intl mbstring memcache mysql sqlite3 xml 
     PKGS="$(printf "%s php%.1f-%s" "\${PKGS}" "${PHP_VERSION}" "\${MOD}")"
 done
 
-apt install -qqq \${PKGS}
+apt -qqq install \${PKGS}
 END
 
-RUN apt install -qqq php-pear composer libcurl4-openssl-dev
+RUN apt -qqq install php-pear composer libcurl4-openssl-dev
 
 RUN pecl channel-update pecl.php.net
 
